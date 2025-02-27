@@ -145,6 +145,7 @@
     <ClInclude Include="Memory.h" />
     <ClInclude Include="oneinstructions.h" />
     <ClInclude Include="registers.h" />
+    <ClInclude Include="stackfunctions.h" />
     <ClInclude Include="threeinstructions.h" />
     <ClInclude Include="twoinstructions.h" />
     <ClInclude Include="zeroinstructions.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="flagfunctions.c" />
     <ClCompile Include="oneinstructions.c" />
     <ClCompile Include="registers.c" />
+    <ClCompile Include="stackfunctions.c" />
     <ClCompile Include="threeinstructions.c" />
     <ClCompile Include="twoinstructions.c" />
     <ClCompile Include="zeroinstructions.c" />
