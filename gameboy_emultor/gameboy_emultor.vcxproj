@@ -139,9 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="cb_prefix_instructions.h" />
     <ClInclude Include="Cpu.h" />
     <ClInclude Include="flags.h" />
     <ClInclude Include="Gpu.h" />
+    <ClInclude Include="ioinstructions.h" />
     <ClInclude Include="Memory.h" />
     <ClInclude Include="oneinstructions.h" />
     <ClInclude Include="registers.h" />
@@ -151,7 +153,9 @@
     <ClInclude Include="zeroinstructions.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cb_prefix_instructions.c" />
     <ClCompile Include="flagfunctions.c" />
+    <ClCompile Include="ioinstructions.c" />
     <ClCompile Include="oneinstructions.c" />
     <ClCompile Include="registers.c" />
     <ClCompile Include="stackfunctions.c" />

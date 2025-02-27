@@ -45,6 +45,12 @@
     <ClInclude Include="stackfunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ioinstructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cb_prefix_instructions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="flagfunctions.c">
@@ -66,6 +72,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stackfunctions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ioinstructions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cb_prefix_instructions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
