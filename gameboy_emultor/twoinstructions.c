@@ -54,6 +54,17 @@ void sbc_a_r8(regptr regs, uint8_t* r8)
 	regs->A = (uint8_t)result;
 }
 
+void and_a_r8(regptr regs, uint8_t* r8)
+{
+	uint8_t value = *r8;
+	regs->A &= value;
+
+	setflag(regs, FLAG_Z, regs->A == 0);
+	setflag(regs, FLAG_N, 0);
+	setflag(regs, FLAG_H, 0);
+	setflag(regs, FLAG_C, 0);
+}
+
 void xor_a_r8(regptr regs, uint8_t* r8)
 {
 	uint8_t value = *r8;

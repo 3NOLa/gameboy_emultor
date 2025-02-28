@@ -35,6 +35,22 @@ void ret(regptr regs, uint8_t* memory)
 	regs->PC = adr;
 }
 
+void ei(regptr regs)
+{
+	regs->IME_enable_delay = 1;
+}
+
+void di(regptr regs)
+{
+	regs->IME = 0;
+}
+
+void reti(regptr regs, uint8_t* memory)
+{
+	ei(regs);
+	ret(regs, memory);
+}
+
 void ret_nz(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_Z))
@@ -59,20 +75,14 @@ void ret_c(regptr regs, uint8_t* memory)
 		ret(regs, memory);
 }
 
-void ret_nz(regptr regs, uint8_t* memory)
-{
-	if (!getFlag(regs, FLAG_Z))
-		ret(regs, memory);
-}
-
 void ret_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 {
 	switch ((opcode >> 3) & 2)
 	{
-	case 0x0:ret_nz(regs, memory);
-	case 0x1:ret_z(regs, memory);
-	case 0x2:ret_nc(regs, memory);
-	case 0x3:ret_c(regs, memory);
+	case 0x0:ret_nz(regs, memory); break;
+	case 0x1:ret_z(regs, memory); break;
+	case 0x2:ret_nc(regs, memory); break;
+	case 0x3:ret_c(regs, memory); break;
 	default:
 		break;
 	}
@@ -164,13 +174,37 @@ void call_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 {
 	switch ((opcode >> 3) & 2)
 	{
-	case 0x0:call_nz(regs, memory);
-	case 0x1:call_z(regs, memory);
-	case 0x2:call_nc(regs, memory);
-	case 0x3:call_c(regs, memory);
+	case 0x0:call_nz(regs, memory); break;
+	case 0x1:call_z(regs, memory); break;
+	case 0x2:call_nc(regs, memory); break;
+	case 0x3:call_c(regs, memory); break;
 	default:
 		break;
 	}
+}
+
+void rst_tgt3(regptr regs, uint8_t* memory)
+{
+	push(regs, memory, regs->PC);
+	regs->PC = 0x0038;  
+}
+
+void rst_tgt2(regptr regs, uint8_t* memory)
+{
+	push(regs, memory, regs->PC);
+	regs->PC = 0x0028;  
+}
+
+void rst_tgt1(regptr regs, uint8_t* memory)
+{
+	push(regs, memory, regs->PC);
+	regs->PC = 0x0018;  
+}
+
+void rst_tgt0(regptr regs, uint8_t* memory)
+{
+	push(regs, memory, regs->PC);
+	regs->PC = 0x0000;  
 }
 
 void add_sp_imm8(regptr regs, uint8_t* memory)

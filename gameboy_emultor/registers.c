@@ -8,6 +8,7 @@ void registers_init(regptr registers) {
     registers->HL = 0;
     registers->SP = 0;
     registers->PC = 0;
+    registers->IME = 0;
 }
 
 /* Function to get address of 8-bit registers */

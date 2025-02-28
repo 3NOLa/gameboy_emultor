@@ -1,4 +1,5 @@
-#include <cstdint>
+#pragma once
+#include <stdint.h>
 
 #define VIDEO_RAM_SIZE 0x1FFF
 #define NUMBER_OF_PIXELS 100	

@@ -154,8 +154,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cb_prefix_instructions.c" />
+    <ClCompile Include="cpumain.c" />
     <ClCompile Include="flagfunctions.c" />
     <ClCompile Include="ioinstructions.c" />
+    <ClCompile Include="main.c" />
     <ClCompile Include="oneinstructions.c" />
     <ClCompile Include="registers.c" />
     <ClCompile Include="stackfunctions.c" />

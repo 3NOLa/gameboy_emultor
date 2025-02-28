@@ -1,3 +1,4 @@
+#pragma once
 #include "registers.h"
 #include "flags.h"
 

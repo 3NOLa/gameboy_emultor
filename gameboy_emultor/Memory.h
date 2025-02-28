@@ -1,3 +1,4 @@
+#pragma once
 #include "Gpu.h"
 
 #define MEMORY_SIZE 0xFFFF

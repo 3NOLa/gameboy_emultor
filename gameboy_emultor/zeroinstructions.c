@@ -1,30 +1,23 @@
 #include "zeroinstructions.h"
-#include <stdio.h>
-/* Increment 16-bit register */
 void inc_r16(uint16_t* reg) {
     (*reg)++;
 }
 
-/* Decrement 16-bit register */
 void dec_r16(uint16_t* reg) {
     (*reg)--;
 }
 
-/* Increment 8-bit register */
 void inc_r8(uint8_t* reg) {
     (*reg)++;
 }
 
-/* Decrement 8-bit register */
 void dec_r8(uint8_t* reg) {
     (*reg)--;
 }
 
-/* Add register value to HL */
 void add_hl_r16(regptr regs, uint16_t* reg) {
     uint32_t result = regs->HL + *reg;
 
-    /* Set the appropriate flags */
     setflag(regs, FLAG_N, 0); /* Reset N flag */
     setflag(regs, FLAG_H, ((regs->HL & 0x0FFF) + (*reg & 0x0FFF)) > 0x0FFF); /* Half carry */
     setflag(regs, FLAG_C, result > 0xFFFF); /* Carry flag */
@@ -33,11 +26,11 @@ void add_hl_r16(regptr regs, uint16_t* reg) {
 }
 
 /* Load value at address pointed to by 16-bit register into A */
-void ld_a_imm16(regptr regs, uint8_t* memory, uint16_t* r16) {
+void ld_a_r16mem(regptr regs, uint8_t* memory, uint16_t* r16) {
     regs->A = memory[*r16];
 }
 
-void ld_imm16_a(regptr regs, uint8_t* memory, uint16_t* r16) {
+void ld_r16mem_a(regptr regs, uint8_t* memory, uint16_t* r16) {
     memory[*r16] = regs->A;
 }
 
@@ -131,7 +124,7 @@ int zero_threebit_instructions(regptr regs, uint8_t* memory, uint8_t opcode)
 
 void stop(regptr regs) {
     regs->PC += 2;
-    printf("CPU Stopped! Waiting for input...\n");
+    //printf("CPU Stopped! Waiting for input...\n");
     //emulator_paused = 1; 
 }
 
@@ -150,6 +143,6 @@ void group_00_instructions(regptr regs, uint8_t* memory, uint8_t opcode) {
     if (!status)
         status = zero_threebit_instructions(regs, memory, opcode);
 
-    if (!status)
-        printf("Error: Unknown opcode: 0x%02X\n", opcode);
+    if (!status);
+       // printf("Error: Unknown opcode: 0x%02X\n", opcode);
 }

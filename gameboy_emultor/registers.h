@@ -1,3 +1,4 @@
+#pragma once
 #include <stdint.h>  /* Use C-style header instead of cstdint */
 
 /* C-style struct definition */
@@ -32,6 +33,8 @@ typedef struct registers {
     };
     uint16_t SP;        /* Stack Pointer */
     uint16_t PC;        /* Program Counter/Pointer */
+    uint8_t IME; // enables intterps
+    uint8_t IME_enable_delay;  // Delay flag for EI instruction 
 }registers, * regptr;
 
 void registers_init(regptr registers);

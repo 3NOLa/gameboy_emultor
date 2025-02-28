@@ -1,3 +1,4 @@
+#pragma once
 #include "registers.h"
 
 #define FLAG_Z_BIT  7   /* Zero flag */

@@ -80,5 +80,11 @@
     <ClCompile Include="cb_prefix_instructions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cpumain.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
