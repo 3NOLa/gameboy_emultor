@@ -104,14 +104,14 @@ void group_22_instructions(regptr regs, uint8_t* memory, uint8_t opcode)
 	
 	switch ((opcode >> 3) & 7)
 	{
-	case 0x0: add_a_r8(regs, r8);
-	case 0x1: adc_a_r8(regs, r8);
-	case 0x2: sub_a_r8(regs, r8);
-	case 0x3: sbc_a_r8(regs, r8);
-	case 0x4: and_a_r8(regs, r8);
-	case 0x5: xor_a_r8(regs, r8);
-	case 0x6: or_a_r8(regs, r8);
-	case 0x7: cp_a_r8(regs, r8);
+	case 0x0: add_a_r8(regs, r8); break;
+	case 0x1: adc_a_r8(regs, r8); break;
+	case 0x2: sub_a_r8(regs, r8); break;
+	case 0x3: sbc_a_r8(regs, r8); break;
+	case 0x4: and_a_r8(regs, r8); break;
+	case 0x5: xor_a_r8(regs, r8); break;
+	case 0x6: or_a_r8(regs, r8); break;
+	case 0x7: cp_a_r8(regs, r8); break;
 
 	default:
 		break;

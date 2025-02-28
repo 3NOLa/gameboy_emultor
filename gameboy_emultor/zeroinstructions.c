@@ -56,7 +56,9 @@ void ld_r8_imm8(regptr regs, uint8_t* memory, uint16_t* r8) {
 }
 
 void jr(regptr regs, uint8_t* memory) {
-    regs->PC += memory[regs->PC + 1]; // Signed 8-bit relative jump
+    int8_t offset = (int8_t)memory[regs->PC + 1];
+    regs->PC += 2; // Skip opcode and offset
+    regs->PC += offset;
 }
 
 void jr_cond(regptr regs, uint8_t* memory, uint8_t condition) {

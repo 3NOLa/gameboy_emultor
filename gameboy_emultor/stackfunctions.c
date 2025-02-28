@@ -55,29 +55,37 @@ void ret_nz(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_Z))
 		ret(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void ret_z(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_Z))
 		ret(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void ret_nc(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_C))
 		ret(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void ret_c(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_C))
 		ret(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void ret_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 {
-	switch ((opcode >> 3) & 2)
+	switch ((opcode >> 3) & 3)
 	{
 	case 0x0:ret_nz(regs, memory); break;
 	case 0x1:ret_z(regs, memory); break;
@@ -91,6 +99,7 @@ void ret_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 void jp_imm16(regptr regs, uint8_t* memory)
 {
 	uint16_t addr = memory[regs->PC + 1] | (memory[regs->PC + 2] << 8);
+	regs->PC += 3;
 	regs->PC = addr;
 }
 
@@ -104,34 +113,42 @@ void jp_nz(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_Z))
 		jp_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void jp_z(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_Z))
 		jp_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void jp_nc(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_C))
 		jp_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void jp_c(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_C))
 		jp_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void jp_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 {
-	switch ((opcode >> 3) & 2)
+	switch ((opcode >> 3) & 3)
 	{
-	case 0x0:jp_nz(regs, memory);
-	case 0x1:jp_z(regs, memory);
-	case 0x2:jp_nc(regs, memory);
-	case 0x3:jp_c(regs, memory);
+	case 0x0:jp_nz(regs, memory); break;
+	case 0x1:jp_z(regs, memory); break;
+	case 0x2:jp_nc(regs, memory); break;
+	case 0x3:jp_c(regs, memory); break;
 	default:
 		break;
 	}
@@ -141,6 +158,7 @@ void call_imm16(regptr regs, uint8_t* memory)
 {
 	uint16_t addr = memory[regs->PC+1] | (memory[regs->PC + 2] << 8);
 	regs->SP -= 2;
+	regs->PC += 3;
 	memory[regs->SP] = regs->PC >> 8;
 	memory[regs->SP + 1] = regs->PC & 0xff;
 	regs->PC = addr;
@@ -150,29 +168,37 @@ void call_nz(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_Z))
 		call_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void call_z(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_Z))
 		call_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void call_nc(regptr regs, uint8_t* memory)
 {
 	if (!getFlag(regs, FLAG_C))
 		call_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void call_c(regptr regs, uint8_t* memory)
 {
 	if (getFlag(regs, FLAG_C))
 		call_imm16(regs, memory);
+	else
+		regs->PC += 3;
 }
 
 void call_cond(regptr regs, uint8_t* memory, uint8_t opcode)
 {
-	switch ((opcode >> 3) & 2)
+	switch ((opcode >> 3) & 3)
 	{
 	case 0x0:call_nz(regs, memory); break;
 	case 0x1:call_z(regs, memory); break;
